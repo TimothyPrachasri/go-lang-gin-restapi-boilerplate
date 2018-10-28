@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/stellar/go/build"
@@ -37,8 +36,6 @@ func (c Stellar) SendLumens(amount string, sourcePrivateKey string, destinationP
 			build.NativeAmount{amount},
 		),
 	)
-
-	fmt.Println(tx, "tx")
 
 	if err != nil {
 		return false, err

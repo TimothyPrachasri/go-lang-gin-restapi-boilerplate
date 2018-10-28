@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"net/http"
 
 	service "app/lib/domain/services/stellar"
@@ -13,7 +12,6 @@ func Transfer(c *gin.Context) {
 	from := c.PostForm("from")
 	to := c.PostForm("to")
 	amount := c.PostForm("amount")
-	fmt.Println(from, to, amount, "test")
 	isValid := from != "" || to != "" || amount != ""
 	if !isValid {
 		c.JSON(http.StatusBadRequest, gin.H{
