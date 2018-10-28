@@ -34,7 +34,7 @@ func Compare(c *gin.Context) {
 	if queries == "" {
 		panic("Insufficient Query(s)")
 	}
-	params := strings.Split(queries, ",")
+	params := strings.Split(strings.ToUpper(queries), ",")
 	resp := service.Coin{}.GetTickerBySymbols(params)
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
