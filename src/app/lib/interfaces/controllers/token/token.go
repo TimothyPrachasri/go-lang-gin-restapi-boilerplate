@@ -29,18 +29,15 @@ func Compare(c *gin.Context) {
 	jsonParsed, _ := gabs.ParseJSON(body)
 	timeChangeObj := timeChangeStruct{}
 	for _, ech := range params {
-		var timeChange float64
-		var ok bool
-		timeChange, ok = jsonParsed.Search("data", ech, "quote", "USD", "percent_change_1h").Data().(float64)
-		if !ok {
+		timeChange, timeChangeOk := jsonParsed.Search("data", ech, "quote", "USD", "percent_change_1h").Data().(float64)
+		name, nameOk := jsonParsed.Search("data", ech, "name").Data().(string)
+		if !nameOk || !timeChangeOk {
 			continue
 		}
-		if ok {
-			isMetConditions := (timeChangeStruct{} == timeChangeObj) || (timeChangeObj.Value < timeChange)
-			if isMetConditions {
-				timeChangeObj.Key = ech
-				timeChangeObj.Value = timeChange
-			}
+		isMetConditions := (timeChangeStruct{} == timeChangeObj) || (timeChangeObj.Value < timeChange)
+		if isMetConditions {
+			timeChangeObj.Key = name
+			timeChangeObj.Value = timeChange
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
