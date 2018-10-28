@@ -8,6 +8,7 @@ import (
 
 type Coin struct{}
 
+// GetTickerBySymbols receieves array of symbols and fetch tickers based on each symbols.
 func (c Coin) GetTickerBySymbols(symbols []string) *http.Response {
 	query := strings.Join(symbols, ",")
 	url := "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=" + query

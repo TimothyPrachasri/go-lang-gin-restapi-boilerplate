@@ -8,6 +8,7 @@ import (
 
 func main() {
 	router := gin.Default()
+	// apply router ability to api
 	api.ApplyRoutes(router)
 	router.Run()
 }

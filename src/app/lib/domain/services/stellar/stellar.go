@@ -9,6 +9,7 @@ import (
 
 type Stellar struct{}
 
+// LogBalances is a function to log balance of public addresses.
 func (c Stellar) LogBalances(addresses [2]string) {
 	for _, address := range addresses {
 		account, err := horizon.DefaultTestNetClient.LoadAccount(address)
@@ -22,6 +23,8 @@ func (c Stellar) LogBalances(addresses [2]string) {
 	}
 }
 
+// SendLumens is a function for transfering lumens from source to destination with amount of $amount.
+// It returns status, error.
 func (c Stellar) SendLumens(amount string, sourcePrivateKey string, destinationPublicKey string) (bool, error) {
 	if _, err := horizon.DefaultTestNetClient.LoadAccount(destinationPublicKey); err != nil {
 		return false, err

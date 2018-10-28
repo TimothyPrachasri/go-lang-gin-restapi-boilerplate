@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ApplyRoutes applies router to the gin Engine
+// ApplyRoutes apply routerGroup and create API endpoints based on existing group.
 func ApplyRoutes(r *gin.RouterGroup) {
 	stellar := r.Group("/stellar")
 	{

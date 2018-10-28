@@ -10,25 +10,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type response struct {
-	Data responseData `json:"data"`
-}
-
-type responseData map[string]responseQuotes
-
-type responseQuotes struct {
-	Quotes map[string]responseRepesentativeCurrency
-}
-
-type responseRepesentativeCurrency struct {
-	PercentChange float32 `json:"percent_change_1h"`
-}
-
 type timeChangeStruct struct {
-	Key   string
-	Value float64
+	Key   string  // name of symbol
+	Value float64 // time change per hour of this symbol
 }
 
+// Compare is a function for comparing token symbols based on query of Context.
+// The function will be returned as a json represent name of token which has the most price change.
 func Compare(c *gin.Context) {
 	queries := c.DefaultQuery("symbol", "")
 	if queries == "" {

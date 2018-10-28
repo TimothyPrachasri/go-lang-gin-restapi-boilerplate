@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ApplyRoutes applies router to gin Router
+// ApplyRoutes take gin engine to create route named api and send it to each token api routes.
 func ApplyRoutes(r *gin.Engine) {
 	api := r.Group("/api")
 	{

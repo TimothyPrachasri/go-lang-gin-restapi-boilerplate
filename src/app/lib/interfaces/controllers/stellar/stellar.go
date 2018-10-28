@@ -8,6 +8,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Transfer is a function used for transfering amount of lumens from source seed to destination address.
+// if the process of transfer has been successfully proceeded the respond will be status true else will be err.
 func Transfer(c *gin.Context) {
 	from := c.PostForm("from")
 	to := c.PostForm("to")
