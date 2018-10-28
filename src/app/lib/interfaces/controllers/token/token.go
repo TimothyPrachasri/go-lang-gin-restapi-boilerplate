@@ -2,7 +2,6 @@ package controller
 
 import (
 	service "app/lib/domain/services/coin"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -31,14 +30,11 @@ type timeChangeStruct struct {
 }
 
 func Compare(c *gin.Context) {
-	//params := []string{"ETC", "BTC"}
 	queries := c.DefaultQuery("symbol", "")
 	if queries == "" {
 		panic("Insufficient Query(s)")
 	}
 	params := strings.Split(queries, ",")
-	fmt.Println(params, "try")
-	fmt.Println([]string{"ETC", "BTC"}, "hard")
 	resp := service.Coin{}.GetTickerBySymbols(params)
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
