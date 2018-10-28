@@ -1,7 +1,7 @@
 package api
 
 import (
-	"app/lib/interfaces/routes/api/token"
+	tokenApi "app/lib/interfaces/routes/api/token"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,6 +10,6 @@ import (
 func ApplyRoutes(r *gin.Engine) {
 	api := r.Group("/api")
 	{
-		token.ApplyRoutes(api)
+		tokenApi.ApplyRoutes(api)
 	}
 }

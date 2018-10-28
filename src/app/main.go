@@ -1,7 +1,7 @@
 package main
 
 import (
-	"app/lib/interfaces/routes/api"
+	api "app/lib/interfaces/routes/api"
 
 	"github.com/gin-gonic/gin"
 )

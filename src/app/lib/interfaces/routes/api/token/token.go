@@ -1,15 +1,15 @@
-package token
+package api
 
 import (
-	"github.com/gin-gonic/gin"
+	tokenController "app/lib/interfaces/controllers/token"
 
-	"app/lib/interfaces/controllers"
+	"github.com/gin-gonic/gin"
 )
 
 // ApplyRoutes applies router to the gin Engine
 func ApplyRoutes(r *gin.RouterGroup) {
 	token := r.Group("/token")
 	{
-		token.GET("/compare", tokencontroller.Compare)
+		token.GET("/compare", tokenController.Compare)
 	}
 }
