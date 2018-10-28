@@ -1,7 +1,6 @@
 package config
 
 import (
-	"fmt"
 	"path"
 	"path/filepath"
 	"runtime"
@@ -18,7 +17,7 @@ func CoinMarketCap() string {
 	configuration := Configuration{}
 	err := gonfig.GetConf(getFileName(), &configuration)
 	if err != nil {
-		fmt.Println("error:", err)
+		panic(err)
 	}
 	return configuration.Key
 }
